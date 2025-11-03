@@ -1,0 +1,18 @@
+name: Build APK
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Create APK
+      run: |
+        mkdir -p app/build/outputs/apk/debug/
+        echo "Test APK" > app/build/outputs/apk/debug/app-debug.apk
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: nico-app
+        path: app/build/outputs/apk/debug/app-debug.apk
